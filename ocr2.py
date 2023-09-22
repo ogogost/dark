@@ -6,7 +6,7 @@ while True:
     if not line:
         break
     # выводим строку
-    # print(line.strip())
+    print(line.split(','))
     print(line)
 
 # закрываем файл
