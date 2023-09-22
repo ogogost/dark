@@ -1,7 +1,7 @@
 import pyautogui
 import win32gui
 import cv2
-
+from PIL import Image
 def screenshot(window_title=None):
     if window_title:
         title_exists = win32gui.FindWindow(None, window_title)
@@ -23,6 +23,10 @@ try:
     im.show()
 except:
     print('Не существует окна с таким именем.')
+
+im = Image.open('ss10.png')
+im_crop = im.crop((250, 950, 1500, 1050))
+im_crop.save('ss10task.png', quality=95)
 
 # img = cv2.imread('ss6.png', cv2.IMREAD_GRAYSCALE)
 # cv2.imshow('game', img)

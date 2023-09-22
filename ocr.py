@@ -1,10 +1,10 @@
+import easyocr
+# import numpy
 
+reader = easyocr.Reader(['ru','en'], gpu=False)
+# reader = easyocr.Reader(['ru', 'en'])
+result = reader.readtext('ss9task2.png', detail=0)
 
-# import the necessary packages
-import pytesseract
-from PIL import Image
-
-image = Image.open("ss2.png")
-string = pytesseract.image_to_string(image, lang='rus')
-
-print(string)
+file = open('ocr.txt', 'w')
+file.write(str(result))
+file.close()
