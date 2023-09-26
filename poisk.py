@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 img = cv2.imread('ss2.png',1)
-fon = cv2.imread('fon2.png')
+# fon = cv2.imread('fon2.png')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 items = {
@@ -13,7 +13,7 @@ items = {
          'pes_chas': ['imgs/bal_zal/pes_chas/1.png', 'imgs/bal_zal/pes_chas/2.png'],
          'zerkalce': ['imgs/bal_zal/zerkalce/1.png', 'imgs/bal_zal/zerkalce/2.png'],
          }
-templates = ['skripka', 'horse', 'binokl', 'svitok', 'pes_chas', 'zerkalce']
+templates = ['skripka', 'horse', 'binokl', 'svitok', 'zerkalce', 'pes_chas']
 
 dlina_spiska_putei = 2
 
@@ -32,7 +32,7 @@ for i in range(len(template_paths)):
    threshold = 0.8
    loc = np.where(matched >= threshold)
    for pt in zip(*loc[::-1]):
-      cv2.rectangle(img, pt, (pt[0] + h, pt[1] + w), (0,255,255), 1)
+      cv2.rectangle(img, pt, (pt[0] + h, pt[1] + w), (0,255,255), 5)
 
 cv2.imshow('Matched with Template',img)
 cv2.imwrite('ss2_item.png', img)

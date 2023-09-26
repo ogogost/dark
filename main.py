@@ -1,5 +1,5 @@
 import pyautogui
-import win32gui # install module: pywin32!
+import win32gui # install module: pywin32
 import cv2
 from PIL import Image
 import easyocr
@@ -37,7 +37,7 @@ except:
 
 
 
-reader = easyocr.Reader(['ru','en'], gpu=False)
+reader = easyocr.Reader(['ru','en'], gpu=True)
 result = reader.readtext('ss10_task.png', detail=0)
 
 
