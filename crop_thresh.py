@@ -1,6 +1,5 @@
 from PIL import Image
 import cv2
-import numpy
 
 im = Image.open('ss9.png')
 im_crop = im.crop((250, 950, 1500, 1050))

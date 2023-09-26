@@ -1,7 +1,8 @@
 import pyautogui
-import win32gui
+import win32gui # install module: pywin32!
 import cv2
 from PIL import Image
+import easyocr
 def screenshot(window_title=None):
     if window_title:
         title_exists = win32gui.FindWindow(None, window_title)
@@ -21,12 +22,28 @@ def screenshot(window_title=None):
 try:
     im = screenshot('Seekers Notes®: Тайны Дарквуда') #Пишешь название окна в точности до символа.
     im.show()
+
+    im = Image.open('ss10.png')
+    im_crop = im.crop((250, 950, 1500, 1050))
+    im_crop.save('ss10_task.png', quality=95)
+    image1 = cv2.imread('ss10_task.png')
+    img = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
+    # cv2.imshow('img', img)
+    ret, thresh1 = cv2.threshold(img, 160, 255, cv2.THRESH_BINARY)
+    cv2.imshow('thresh', thresh1)
+    cv2.imwrite('ss10_task.png', thresh1)
 except:
     print('Не существует окна с таким именем.')
 
-im = Image.open('ss10.png')
-im_crop = im.crop((250, 950, 1500, 1050))
-im_crop.save('ss10task.png', quality=95)
+
+
+reader = easyocr.Reader(['ru','en'], gpu=False)
+result = reader.readtext('ss10_task.png', detail=0)
+
+
+print(type(result))
+print(result)
+print(sorted(result[0]))
 
 # img = cv2.imread('ss6.png', cv2.IMREAD_GRAYSCALE)
 # cv2.imshow('game', img)
