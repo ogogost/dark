@@ -1,5 +1,5 @@
 import easyocr
-# import numpy
+import numpy
 import time
 
 start = time.time() ## точка отсчета времени
