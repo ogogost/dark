@@ -5,24 +5,24 @@ import (
 	"os"
 	"sync"
 
-	"darkwood/internal/config"
+	"dark/internal/config"
 )
 
 // Manager управляет состоянием игры и режимами работы
 type Manager struct {
-	mu              sync.RWMutex
-	cfg             *config.Config
-	configPath      string
-	currentMode     Mode
-	isRunning       bool
-	locationIndex   map[string]*config.Location
+	mu            sync.RWMutex
+	cfg           *config.Config
+	configPath    string
+	currentMode   Mode
+	isRunning     bool
+	locationIndex map[string]*config.Location
 }
 
 // Mode представляет режим работы программы
 type Mode int
 
 const (
-	ModeNone Mode = iota
+	ModeNone  Mode = iota
 	ModeGame       // F1 - Игра: бот работает в фоне, подсвечивает предметы
 	ModeLearn      // F2 - Обучение: запоминание новых предметов
 )

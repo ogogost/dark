@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"darkwood/internal/config"
+	"dark/internal/config"
 )
 
 // ItemFinder ищет предметы по заранее известным координатам
@@ -19,10 +19,10 @@ type ItemFinder struct {
 
 // FoundItem представляет найденный предмет
 type FoundItem struct {
-	ID       string
-	Name     string
-	X, Y     int
-	FoundAt  time.Time
+	ID      string
+	Name    string
+	X, Y    int
+	FoundAt time.Time
 }
 
 // NewItemFinder создает новый поисковик предметов
@@ -61,7 +61,7 @@ func (f *ItemFinder) Stop() {
 func (f *ItemFinder) SetTargetItems(itemIDs []string) {
 	f.mu.Lock()
 	defer f.mu.Unlock()
-	
+
 	f.targetItemIDs = itemIDs
 	// Сбрасываем статус найденных предметов при смене цели
 	f.foundItems = make(map[string]config.Item)
@@ -123,12 +123,12 @@ func (f *ItemFinder) scan(captureFn func() ImageProvider, locations []config.Loc
 		// Вырезаем ROI предмета
 		roiX := targetItem.X - targetItem.Width/2
 		roiY := targetItem.Y - targetItem.Height/2
-		
+
 		roi := Crop(screen, roiX, roiY, targetItem.Width, targetItem.Height)
-		
+
 		// Вычисляем хеш текущей области
 		currentHash := f.hasher.ComputeHash(roi)
-		
+
 		// Для первого раза просто сохраняем хеш как эталон
 		// В реальной реализации здесь должно быть сравнение с эталонным хешем
 		if currentHash != 0 {
@@ -160,7 +160,7 @@ func (f *ItemFinder) GetFoundItems() []FoundItem {
 func (f *ItemFinder) IsItemFound(itemID string) bool {
 	f.mu.RLock()
 	defer f.mu.RUnlock()
-	
+
 	_, exists := f.foundItems[itemID]
 	return exists
 }
@@ -169,6 +169,6 @@ func (f *ItemFinder) IsItemFound(itemID string) bool {
 func (f *ItemFinder) Reset() {
 	f.mu.Lock()
 	defer f.mu.Unlock()
-	
+
 	f.foundItems = make(map[string]config.Item)
 }

@@ -4,18 +4,18 @@ import (
 	"sync"
 	"time"
 
-	"darkwood/internal/vision"
+	"dark/internal/vision"
 )
 
 // Overlay представляет прозрачное окно поверх игры
 type Overlay struct {
-	mu           sync.RWMutex
-	foundItems   []vision.FoundItem
-	foundCount   int
-	totalCount   int
-	startTime    time.Time
-	isVisible    bool
-	stopChan     chan struct{}
+	mu         sync.RWMutex
+	foundItems []vision.FoundItem
+	foundCount int
+	totalCount int
+	startTime  time.Time
+	isVisible  bool
+	stopChan   chan struct{}
 }
 
 // NewOverlay создает новый оверлей

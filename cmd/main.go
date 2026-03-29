@@ -1,4 +1,4 @@
-// Darkwood - сверхбыстрый визуальный помощник для поиска скрытых предметов
+// dark - сверхбыстрый визуальный помощник для поиска скрытых предметов
 package main
 
 import (
@@ -9,17 +9,17 @@ import (
 	"syscall"
 	"time"
 
-	"darkwood/internal/config"
-	"darkwood/internal/game"
-	"darkwood/internal/overlay"
-	"darkwood/internal/vision"
+	"dark/internal/config"
+	"dark/internal/game"
+	"dark/internal/overlay"
+	"dark/internal/vision"
 )
 
 func main() {
-	log.Println("🌲 Darkwood - Visual Helper starting...")
+	log.Println("🌲 dark - Visual Helper starting...")
 
 	// Инициализация менеджера игры
-	cfgPath := "darkwood_config.json"
+	cfgPath := "dark_config.json"
 	manager, err := game.NewManager(cfgPath)
 	if err != nil {
 		log.Fatalf("Failed to initialize game manager: %v", err)
@@ -68,7 +68,7 @@ func main() {
 	// Запускаем оверлей
 	overlay.Start(100*time.Millisecond, mockRender)
 
-	log.Println("✅ Darkwood is running! Press Ctrl+C to stop.")
+	log.Println("✅ dark is running! Press Ctrl+C to stop.")
 
 	// Ожидание сигнала остановки
 	<-sigChan

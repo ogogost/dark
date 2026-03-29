@@ -5,16 +5,16 @@ import (
 	"sync"
 	"time"
 
-	"darkwood/internal/config"
+	"dark/internal/config"
 )
 
 // TextScanner сканирует текст в нижней части экрана (подвал игры)
 type TextScanner struct {
-	hasher      *Hasher
-	checkInterval time.Duration
-	mu          sync.RWMutex
+	hasher            *Hasher
+	checkInterval     time.Duration
+	mu                sync.RWMutex
 	currentWordHashes []uint64
-	stopChan    chan struct{}
+	stopChan          chan struct{}
 }
 
 // NewTextScanner создает новый сканер текста
@@ -79,10 +79,10 @@ func (s *TextScanner) scan(captureFn func() ImageProvider) {
 
 		// Вырезаем зону
 		zone := Crop(screen, x, y, zoneWidth, zoneHeight/2)
-		
+
 		// Вычисляем хеш
 		hash := s.hasher.ComputeHash(zone)
-		
+
 		if hash != 0 {
 			detectedHashes = append(detectedHashes, hash)
 		}
