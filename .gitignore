@@ -1,37 +1,10 @@
 ```
-# Compiled and build artifacts
+# Executables
 *.exe
-*.dll
-*.so
-*.o
-*.obj
-*.out
-build/
-dist/
+
+# Archives
+*.tar.gz
 
 # Dependencies
-vendor/
-*.mod
-*.sum
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Editors
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Go specific
-*.test
-*.prof
-cover.out
+go.mod
 ```
